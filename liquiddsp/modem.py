@@ -39,6 +39,10 @@ def freqmod_modulate(q, m, s):
     return _cffi.lib.freqmod_modulate(q, m, s)
 
 
+def freqmod_modulate_buffer(mod, buff, num_samples):
+    return ffi.gc(_cffi.lib.modulate_buffer(mod, buff, num_samples), _cffi.lib.free)
+
+
 cdef('typedef struct freqdem_s * freqdem;')
 
 
@@ -65,3 +69,4 @@ def freqdem_reset(q):
 @cdef('void freqdem_demodulate(freqdem _q, liquid_float_complex _r, float * _m);')
 def freqdem_demodulate(q, r, m):
     return _cffi.lib.freqdem_reset(q, r, m)
+

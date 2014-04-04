@@ -26,6 +26,7 @@ setup(
         ],
   entry_points = {
         'console_scripts' : [
+            'freqdem = liquiddsp.tools.freqdem:main',
             ]
         },
 )
