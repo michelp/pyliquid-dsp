@@ -2,6 +2,8 @@ from ._cffi import ffi, ptop
 
 import liquiddsp._cffi
 
+cdef('typedef ... liquid_float_complex;')
+
 import modem
 
 # compilation happens here in verify(),

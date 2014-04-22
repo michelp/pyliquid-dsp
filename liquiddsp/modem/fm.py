@@ -15,22 +15,22 @@ LIQUID_FREQDEM_DELAYCONJ = 1
 
 
 @cdef('freqmod freqmod_create(float _kf);')
-def create(kf):
+def mod_create(kf):
     return ffi.gc(_cffi.lib.freqmod_create(kf), freqmod_destroy)
 
 
 @cdef('void freqmod_destroy(freqmod _q);')
-def destroy(q):
+def mod_destroy(q):
     return _cffi.lib.freqmod_destroy(q)
 
 
 @cdef('void freqmod_print(freqmod _q);')
-def print(q):
+def mod_print(q):
     return _cffi.lib.freqmod_print(q)
 
 
 @cdef('void freqmod_reset(freqmod _q);')
-def reset(q):
+def mod_reset(q):
     return _cffi.lib.freqmod_reset(q)
 
 
@@ -47,26 +47,30 @@ cdef('typedef struct freqdem_s * freqdem;')
 
 
 @cdef('freqdem freqdem_create(float _kf, liquid_freqdem_type _type);')
-def create(kf, typ):
+def dem_create(kf, typ):
     return ffi.gc(_cffi.lib.freqdem_create(kf, typ), freqdem_destroy)
 
 
 @cdef('void freqdem_destroy(freqdem _q);')
-def destroy(q):
+def dem_destroy(q):
     return _cffi.lib.freqdem_destroy(q)
 
 
 @cdef('void freqdem_print(freqdem _q);')
-def print(q):
+def dem_print(q):
     return _cffi.lib.freqdem_print(q)
 
 
 @cdef('void freqdem_reset(freqdem _q);')
-def reset(q):
+def dem_reset(q):
     return _cffi.lib.freqdem_reset(q)
 
 
 @cdef('void freqdem_demodulate(freqdem _q, liquid_float_complex _r, float * _m);')
 def demodulate(q, r, m):
     return _cffi.lib.freqdem_reset(q, r, m)
+
+
+def demodulate_buffer(dem, buff, num_samples):
+    pass
 
