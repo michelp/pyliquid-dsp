@@ -15,7 +15,7 @@ def destroy(q):
 
 
 @cdef('void freqmod_print(freqmod _q);')
-def print(q):
+def mod_print(q):
     return _cffi.lib.freqmod_print(q)
 
 
@@ -29,7 +29,10 @@ def modulate(q, m, s):
     return _cffi.lib.freqmod_modulate(q, m, s)
 
 
-def modulate_buffer(mod, buff, num_samples):
-    return ffi.gc(_cffi.lib.modulate_buffer(mod, buff, num_samples), _cffi.lib.free)
+@cdef('void freqmod_modulate_block(freqmod _q, float * _m, unsigned int _n, liquid_float_complex * _s);')
+def modulate_block(mod, message, signal):
+    message_addr = ffi.cast('float *', message.__array_interface__['data'][0])
+    signal_addr = ffi.cast('liquid_float_complex *', signal.__array_interface__['data'][0])
+    return _cffi.lib.freqmod_modulate_block(mod, message_addr, len(message), signal_addr)
 
 
