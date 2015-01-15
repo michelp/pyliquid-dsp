@@ -6,7 +6,7 @@ cdef('typedef struct freqmod_s * freqmod;')
 
 @cdef('freqmod freqmod_create(float _kf);')
 def create(kf):
-    return ffi.gc(_cffi.lib.freqmod_create(kf), freqmod_destroy)
+    return ffi.gc(_cffi.lib.freqmod_create(kf), destroy)
 
 
 @cdef('void freqmod_destroy(freqmod _q);')

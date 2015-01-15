@@ -39,7 +39,7 @@ class FM(Modem):
         if signal is None:
             signal = numpy.empty(len(message), dtype=numpy.complex64)
         else:
-            assert len(signal) >= len(message) and signal.dtype = numpy.complex64
+            assert len(signal) >= len(message) and signal.dtype is numpy.complex64
         freqmod.modulate_block(self.modulator, message, len(signal), signal)
         return signal
 
@@ -52,7 +52,7 @@ class FM(Modem):
         if message is None:
             message = numpy.empty(len(signal), dtype=numpy.float32)
         else:
-            assert len(message) >= len(signal) and message.dtype = numpy.float32
+            assert len(message) >= len(signal) and message.dtype is numpy.float32
         freqdem.demodulate_block(self.demodulator, signal, len(signal), message)
         return message
 
